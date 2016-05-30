@@ -150,7 +150,7 @@
 	<build>
 		<finalName>node_dubbo_server</finalName>
 		<filters>
-			<filter>../src/main/resources/filters/filter-${env}.properties</filter>
+			<filter>./src/main/resources/filters/filter-${env}.properties</filter>
 		</filters>
 		<plugins>
 			<plugin>
@@ -166,6 +166,56 @@
 					</webApp>
 					<stopKey>foo</stopKey>
 					<stopPort>8099</stopPort>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.12</version>
+				<configuration>
+					<argLine>-Xms512m -Xmx1024m -XX:PermSize=128m -XX:MaxPermSize=128m</argLine>
+					<includes>
+						<include>com/haier/**/*Test*.java</include>
+					</includes>
+					<printSummary>true</printSummary>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>cobertura-maven-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<instrumentation>
+						<excludes>
+							<exclude>com/haier/**/action/**/*.class</exclude>
+							<exclude>com/haier/**/webapp/**/*.class</exclude>
+							<exclude>com/haier/**/interceptor/**/*.class</exclude>
+							<exclude>com/haier/**/taglib/**/*.class</exclude>
+							<exclude>com/haier/**/domain/**/*.class</exclude>
+							<exclude>com/haier/**/model/**/*.class</exclude>
+							<exclude>com/haier/**/dto/**/*.class</exclude>
+							<exclude>com/haier/**/util/DataFormat.class</exclude>
+						</excludes>
+					</instrumentation>
+					<formats>
+						<format>xml</format>
+					</formats>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.4.2</version>
+				<configuration>
+					<skipTests>true</skipTests>
 				</configuration>
 			</plugin>
 		</plugins>
