@@ -7,5 +7,7 @@
 
     <import resource="spring-dubbo-provider.xml"/>
     <import resource="spring-beans.xml"/>
+    <import resource="spring-dataSource.xml"/>
+    <import resource="spring-common.xml"/>
 
 </beans>

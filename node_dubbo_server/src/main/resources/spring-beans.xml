@@ -5,8 +5,8 @@
        http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!-- 接口的实现 -->
-    <bean id="personService" class="com.allen.node.dubbo.service.impl.PersonServiceImpl"/>
-    <bean id="multimediaService" class="com.allen.node.dubbo.service.impl.MultimediaServiceImpl"/>
+    <bean id="personService" class="com.wind.node.dubbo.service.impl.PersonServiceImpl"/>
+    <bean id="multimediaService" class="com.wind.node.dubbo.service.impl.MultimediaServiceImpl"/>
 
     
 </beans>
