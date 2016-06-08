@@ -16,9 +16,9 @@
 	<dubbo:protocol name="dubbo" port="20880" />
 
 	<!-- 声明需要暴露的服务接口 -->
-	<dubbo:service interface="com.allen.node.dubbo.service.PersonService"
+	<dubbo:service interface="com.wind.node.dubbo.service.PersonService"
 				   ref="personService" />
-	<dubbo:service interface="com.allen.node.dubbo.service.MultimediaService"
+	<dubbo:service interface="com.wind.node.dubbo.service.MultimediaService"
 				   ref="multimediaService" />
 
 

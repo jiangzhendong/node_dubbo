@@ -3,7 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.wind.node.dubbo.dao.PersonDAO">
+<mapper namespace="com.wind.node.dubbo.dao.MultimediaDAO">
 	<!-- oracle 分页头 -->
 	<!--<sql id="pagination_Head" >-->
 		<!--<![CDATA[select * from ( select row_.*, rownum rownum_ from ( ]]>-->
@@ -27,19 +27,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<sql id="pagination_Tail">
 		<![CDATA[limit #{pager.firstResult}, #{pager.pageSize}]]>
 	</sql>
-
-
-	<resultMap id="personMap" type="person">
+	<resultMap id="multimediaMap" type="multimedia">
 		<id property="id" column="ID" javaType="long" jdbcType="NUMERIC" />
-		<result property="userName" column="user_name"/>
-		<result property="password" column="password"/>
-		<result property="address" column="address"/>
-		<result property="gender" column="gender"/>
-		<result property="phone" column="phone"/>
-		<result property="eMail" column="e_mail"/>
-		<result property="loginDate" column="login_date"/>
-		<result property="loginIp" column="login_ip"/>
+		<result property="path" column="path"/>
+		<result property="fileName" column="file_name"/>
+		<result property="extensionName" column="extension_name"/>
+		<result property="operator" column="operator"/>
+		<result property="type" column="type"/>
+		<result property="order" column="order"/>
+		<result property="creatDate" column="creat_date"/>
+		<result property="modifyDate" column="modify_date"/>
 	</resultMap>
 
-	
+	<sql id="selectAll">
+		select *
+		from J_MULTIMEDIA
+	</sql>
+	<!-- 查询公司原始数据列表 -->
+	<select id="getMultimediaByType" resultMap="multimediaMap" parameterType="multimedia">
+		<include refid="pagination_Head"/>
+		select *
+			from J_MULTIMEDIA
+		  where type =#{type}
+		   order by creat_date
+		<include refid="pagination_Tail"/>
+	</select>
 </mapper>
